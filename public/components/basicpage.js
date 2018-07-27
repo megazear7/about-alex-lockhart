@@ -2,22 +2,41 @@ export default class BasicPage {
   init(container, pageQuery) {
     this.children = [];
 
+    BasicPage.getHomePage(pageQuery)
+    .then(homePageQuery => {
+      homePageQuery.collection('children').get().then(children => {
+        this.children = [];
+        children.forEach(child => {
+          this.children.push(child.data());
+        });
+        this.render();
+      });
+
+      return homePageQuery.get();
+    })
+    .then(homePage => {
+      this.container = container;
+      this.homePage = homePage.data();
+      this.render();
+    });
+
     pageQuery.get().then(page => {
       this.container = container;
       this.page = page.data();
-
       this.render();
     });
+  }
 
-    pageQuery.collection('children').get().then(children => {
-      this.children = [];
-      children.forEach(child => {
-        console.log(child);
-        this.children.push(child.data());
-      });
+  static async getHomePage(pageQuery) {
+    let type = (await pageQuery.get()).data().type;
 
-      this.render();
-    });
+    while (type != 'home') {
+      pageQuery = pageQuery.parent.parent;
+      type = (await pageQuery.get()).data().type;
+    }
+
+    console.log(pageQuery);
+    return pageQuery;
   }
 
   render() {
