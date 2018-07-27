@@ -35,7 +35,6 @@ export default class BasicPage {
       type = (await pageQuery.get()).data().type;
     }
 
-    console.log(pageQuery);
     return pageQuery;
   }
 
