@@ -1,30 +1,21 @@
+import BasicPage from '/components/basicpage.js';
+
 export default class Router {
   init(container) {
     this.container = container;
 
-    Router.getPath(window.location.pathname).then(page => {
-      if (page.exists) {
-        this.page = page.data();
-        this.render();
-      } else {
-        console.error("No such page exists!");
-      }
-    });
+    this.page = Router.getPath(window.location.pathname);
+    this.render();
   }
 
   render() {
     this.container.innerHTML = Router.markup(this);
+    this.pageElement = this.container.querySelector('.page');
+    new BasicPage(this.pageElement, this.page);
   }
 
-  static markup({page: {title, description}}) {
-    return `
-      <h1>${title}</h1>
-      <p>${description}</p>
-      <a href='/us/en/home'>Home</a>
-      <a href='/us/en/home/blog'>Blog</a>
-      <a href='/us/en/home/portfolio'>Portfolio</a>
-      <a href='/us/en/home/health'>Health</a>
-    `;
+  static markup({}) {
+    return `<div class="page"></div>`;
   }
 
   static getPath(path) {
@@ -35,7 +26,7 @@ export default class Router {
       query = query.doc(part);
       if (index !== parts.length -1) query = query.collection('children');
     });
-    return query.get();
+    return query;
   }
 
   constructor(container) {
