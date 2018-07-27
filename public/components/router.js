@@ -20,6 +20,7 @@ export default class Router {
     return `
       <h1>${title}</h1>
       <p>${description}</p>
+      <a href='/us/en/home'>Home</a>
       <a href='/us/en/home/blog'>Blog</a>
       <a href='/us/en/home/portfolio'>Portfolio</a>
       <a href='/us/en/home/health'>Health</a>
