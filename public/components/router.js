@@ -5,6 +5,19 @@ export default class Router {
     this.container = container;
 
     this.page = Router.getPath(window.location.pathname);
+
+    document.onclick = function (e) {
+      e = e ||  window.event;
+      var element = e.target || e.srcElement;
+
+      if (element.tagName == 'A' && element.getAttribute('href').startsWith('/')) {
+        window.history.pushState({}, null, element.getAttribute('href'));
+        // TODO This is causing a browser refresh.
+        this.render();
+        return false; // prevent default action and stop event propagation
+      }
+    };
+
     this.render();
   }
 
