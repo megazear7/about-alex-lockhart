@@ -36,6 +36,20 @@ export default class BasicPage {
 
   render() {
     render(BasicPage.markup(this), this.container);
+    this.header = this.container.querySelector('.header');
+    this.addEventListeners();
+  }
+
+  addEventListeners() {
+    document.onscroll = (e) => {
+      if (window.scrollY > 10) {
+        this.header.classList.add('collapse');
+        window.document.body.style.marginTop = "7rem";
+      } else if (window.scrollY <= 0) {
+        this.header.classList.remove('collapse');
+        window.document.body.style.marginTop = "0";
+      }
+    };
   }
 
   set pageQuery(page) {
@@ -49,16 +63,24 @@ export default class BasicPage {
 
   static markup({pageQuery, homePageQuery, navPagesQuery}) {
     return html`
-      ${pageQuery.get().then(page => html`
-        <h1>${page.data().title}</h1>
-        <p>${page.data().description}</p>
-      `)}
-      ${homePageQuery.then(homePageQuery => homePageQuery.get()).then(homePage => html`
-        <a href="${homePage.data().path}">${homePage.data().title}</a>
-      `)}
-      ${navPagesQuery.then(navPages => navPages.map(navPage => html`
-        <a href="${navPage.type === 'redirect' ? navPage.redirect : navPage.path}">${navPage.title}</a>
-      `))}
+      <div class="header">
+        <img src="/images/mountains-wide.png">
+        <h2>Alex Lockhart</h2>
+      </div>
+      <div class="content">
+        ${pageQuery.get().then(page => html`
+          <h1>${page.data().title}</h1>
+          <p>${page.data().description}</p>
+        `)}
+      </div>
+      <div class="nav">
+        ${homePageQuery.then(homePageQuery => homePageQuery.get()).then(homePage => html`
+          <a href="${homePage.data().path}">${homePage.data().title}</a>
+        `)}
+        ${navPagesQuery.then(navPages => navPages.map(navPage => html`
+          <a href="${navPage.type === 'redirect' ? navPage.redirect : navPage.path}">${navPage.title}</a>
+        `))}
+      </div>
     `;
   }
 
