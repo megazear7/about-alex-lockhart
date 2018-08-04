@@ -83,6 +83,7 @@ export default class BasicPage {
       <div class="content">
         ${pageQuery.get().then(page => html`
           <p>${page.data().description}</p>
+          ${page.data().content ? page.data().content.map(text => html`<p>${text}</p>`) : ''}
         `)}
       </div>
       <div class="nav">
