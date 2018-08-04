@@ -5,16 +5,13 @@ export default class Router {
   init(container) {
     this.container = container;
 
-    this.page = Router.getPath(window.location.pathname);
-
-    document.onclick = function (e) {
+    document.onclick = (e) => {
       e = e ||  window.event;
       var element = e.target || e.srcElement;
 
       if (element.tagName == 'A' && element.getAttribute('href').startsWith('/')) {
         window.history.pushState({}, null, element.getAttribute('href'));
-        // TODO This is causing a browser refresh.
-        this.render();
+        this.pageComponent.pageQuery = Router.getPath(window.location.pathname);
         return false; // prevent default action and stop event propagation
       }
     };
@@ -24,8 +21,7 @@ export default class Router {
 
   render() {
     render(Router.markup(this), this.container);
-    this.pageElement = this.container.querySelector('.page');
-    new BasicPage(this.pageElement, this.page);
+    this.pageComponent = new BasicPage(this.container.querySelector('.page'), Router.getPath(window.location.pathname));
   }
 
   static markup({}) {

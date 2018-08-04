@@ -2,31 +2,11 @@ import {html, render} from '/vendor/lit-html.js';
 
 export default class BasicPage {
   init(container, pageQuery) {
+    this.container = container;
+    this.pageQueryValue = pageQuery;
+    this.page = null;
     this.children = [];
-
-    BasicPage.getHomePage(pageQuery)
-    .then(homePageQuery => {
-      homePageQuery.collection('children').get().then(children => {
-        this.children = [];
-        children.forEach(child => {
-          this.children.push(child.data());
-        });
-        this.render();
-      });
-
-      return homePageQuery.get();
-    })
-    .then(homePage => {
-      this.container = container;
-      this.homePage = homePage.data();
-      this.render();
-    });
-
-    pageQuery.get().then(page => {
-      this.container = container;
-      this.page = page.data();
-      this.render();
-    });
+    this.render();
   }
 
   static async getHomePage(pageQuery) {
@@ -42,6 +22,38 @@ export default class BasicPage {
 
   render() {
     render(BasicPage.markup(this), this.container);
+
+    this.pageQuery.get().then(page => {
+      this.page = page.data();
+      render(BasicPage.markup(this), this.container);
+    });
+
+    BasicPage.getHomePage(this.pageQuery)
+    .then(homePageQuery => {
+      homePageQuery.collection('children').get().then(children => {
+        this.children = [];
+        children.forEach(child => {
+          this.children.push(child.data());
+        });
+        this.render();
+        render(BasicPage.markup(this), this.container);
+      });
+
+      return homePageQuery.get();
+    })
+    .then(homePage => {
+      this.homePage = homePage.data();
+      render(BasicPage.markup(this), this.container);
+    });
+  }
+
+  set pageQuery(page) {
+    this.pageQueryValue = page;
+    this.render();
+  }
+
+  get pageQuery() {
+    return this.pageQueryValue;
   }
 
   static markup({page, children}) {
