@@ -4,38 +4,34 @@ export default class BasicPage {
   init(container, pageQuery) {
     this.container = container;
     this.pageQueryValue = pageQuery;
-    this.page = null;
     this.children = [];
     this.render();
   }
 
-  static async getHomePage(pageQuery) {
-    let type = (await pageQuery.get()).data().type;
+  get homePageQuery() {
+    return (async () => {
+      let pageQuery = this.pageQuery;
+      let type = (await pageQuery.get()).data().type;
 
-    while (type != 'home') {
-      pageQuery = pageQuery.parent.parent;
-      type = (await pageQuery.get()).data().type;
-    }
+      while (type != 'home') {
+        pageQuery = pageQuery.parent.parent;
+        type = (await pageQuery.get()).data().type;
+      }
 
-    return pageQuery;
+      return pageQuery;
+    });
   }
 
   render() {
     render(BasicPage.markup(this), this.container);
 
-    this.pageQuery.get().then(page => {
-      this.page = page.data();
-      render(BasicPage.markup(this), this.container);
-    });
-
-    BasicPage.getHomePage(this.pageQuery)
+    this.homePageQuery(this.pageQuery)
     .then(homePageQuery => {
       homePageQuery.collection('children').get().then(children => {
         this.children = [];
         children.forEach(child => {
           this.children.push(child.data());
         });
-        this.render();
         render(BasicPage.markup(this), this.container);
       });
 
@@ -56,12 +52,12 @@ export default class BasicPage {
     return this.pageQueryValue;
   }
 
-  static markup({page, children}) {
+  static markup({pageQuery, children}) {
     return html`
-      ${page ? html`
-        <h1>${page.title}</h1>
-        <p>${page.description}</p>
-      ` : ``}
+      ${pageQuery.get().then((page) => html`
+        <h1>${page.data().title}</h1>
+        <p>${page.data().description}</p>
+      `)}
       <a href='/us/en/home'>Home</a>
       ${children.map(child => html`
         <a href='${child.path}'>${child.title}</a>
