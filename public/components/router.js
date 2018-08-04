@@ -1,3 +1,4 @@
+import {html, render} from '/vendor/lit-html.js';
 import BasicPage from '/components/basicpage.js';
 
 export default class Router {
@@ -22,13 +23,13 @@ export default class Router {
   }
 
   render() {
-    this.container.innerHTML = Router.markup(this);
+    render(Router.markup(this), this.container);
     this.pageElement = this.container.querySelector('.page');
     new BasicPage(this.pageElement, this.page);
   }
 
   static markup({}) {
-    return `<div class="page"></div>`;
+    return html`<div class="page"></div>`;
   }
 
   static getPath(path) {

@@ -1,3 +1,5 @@
+import {html, render} from '/vendor/lit-html.js';
+
 export default class BasicPage {
   init(container, pageQuery) {
     this.children = [];
@@ -39,19 +41,19 @@ export default class BasicPage {
   }
 
   render() {
-    this.container.innerHTML = BasicPage.markup(this);
+    render(BasicPage.markup(this), this.container);
   }
 
   static markup({page, children}) {
-    return `
-      ${page ? `
+    return html`
+      ${page ? html`
         <h1>${page.title}</h1>
         <p>${page.description}</p>
       ` : ``}
       <a href='/us/en/home'>Home</a>
-      ${children.map(child => `
+      ${children.map(child => html`
         <a href='${child.path}'>${child.title}</a>
-      `).join('')}
+      `)}
     `;
   }
 
