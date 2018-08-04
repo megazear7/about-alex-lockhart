@@ -52,6 +52,11 @@ img {
   grid-area: links;
 }
 
+.nav a.active {
+  background-color: black;
+  color: white;
+}
+
 .nav .current {
   height: 0;
   display: none;

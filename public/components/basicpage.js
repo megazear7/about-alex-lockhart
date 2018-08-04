@@ -88,11 +88,13 @@ export default class BasicPage {
         </div>
         <div class="links">
           ${homePageQuery.then(homePageQuery => homePageQuery.get()).then(homePage => html`
-            <a href="${homePage.data().path}">${homePage.data().title}</a>
+            <a href="${homePage.data().path}"
+               class="${homePage.data().path === window.location.pathname ? 'active' : ''}">${homePage.data().title}</a>
           `)}
           ${navPagesQuery.then(navPages => navPages.map(navPage => html`
             <a href="${navPage.type === 'redirect' ? navPage.redirect : navPage.path}"
-               target="${navPage.type === 'redirect' ? '_blank' : ''}">${navPage.title}</a>
+               target="${navPage.type === 'redirect' ? '_blank' : ''}"
+               class="${navPage.path === window.location.pathname ? 'active' : ''}">${navPage.title}</a>
           `))}
         </div>
         <div class="nav-close">Close</div>
