@@ -74,7 +74,20 @@ export default class BasicPage {
     return this.pageQueryValue;
   }
 
-  static markup({pageQuery, homePageQuery, navPagesQuery}) {
+  renderComponent(comp) {
+    if (typeof comp === 'string') {
+      return html`<p>${comp}</p>`;
+    } else if (comp.type === 'image') {
+      return html`<img src="${comp.src}"></a>`;
+    } else if (comp.type === 'header') {
+      return html`
+        <hr>
+        <h3>${comp.text}</h3>
+      `;
+    }
+  }
+
+  static markup({pageQuery, homePageQuery, navPagesQuery, renderComponent}) {
     return html`
       <div class="header">
         <img src="/images/mountains-wide.png">
@@ -84,7 +97,7 @@ export default class BasicPage {
         ${pageQuery.get().then(page => html`
           <p class="description">${page.data().description}</p>
           <hr>
-          ${page.data().content ? page.data().content.map(text => html`<p>${text}</p>`) : ''}
+          ${page.data().content ? page.data().content.map(comp => renderComponent(comp)) : ''}
         `)}
       </div>
       <div class="nav">
