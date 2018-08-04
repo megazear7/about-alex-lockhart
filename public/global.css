@@ -95,7 +95,7 @@ img {
 }
 
 .content h3 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin: 2rem 300px 0.5rem 300px;
   max-width: 800px;
 }
@@ -184,8 +184,17 @@ img {
     height: 15rem;
   }
 
-  .content {
+  .content p {
     margin: 0;
     padding: 0.5rem;
+  }
+
+  .content h3 {
+    margin: 0;
+    padding: 0.5rem;
+  }
+
+  .content hr {
+    margin: 0.5rem;
   }
 }
