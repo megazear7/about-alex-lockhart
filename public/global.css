@@ -73,6 +73,14 @@ img {
   height: 0;
 }
 
+.nav .nav-close {
+  position: fixed;
+  width: 100%;
+  bottom: 1rem;
+  color: rgba(255,255,255,0.4);
+  display: none;
+}
+
 .content {
   margin: 0 300px;
   max-width: 800px;
@@ -117,14 +125,42 @@ img {
   bottom: 200px;
 }
 
-@media (max-width: 600px) {
-  body, #router {
-    margin-top: 0;
-    background: white;
-    box-shadow: none;
+@media only screen and (max-width: 600px) {
+  .nav {
+    width: 100vw;
+    height: 3rem;
+    bottom: 0;
+    top: auto
   }
 
-  body {
-    border-top: 16px solid #ffa100;
+  .nav .current {
+    height: 3rem;
+    display: block;
+  }
+
+  .nav.open .current {
+    display: none;
+  }
+
+  .nav.open .nav-close {
+    display: block;
+  }
+
+  .nav.open {
+    height: 100vh;
+  }
+
+  .header h2 {
+    margin: 0 0 0 5px;
+  }
+
+  .header img {
+    width: auto;
+    height: 15rem;
+  }
+
+  .content {
+    margin: 0;
+    padding: 0.5rem;
   }
 }

@@ -42,14 +42,22 @@ export default class BasicPage {
 
   addEventListeners() {
     document.onscroll = (e) => {
-      if (window.scrollY > 10) {
+      if (window.scrollY > 10 && document.body.clientWidth > 600) {
         document.body.classList.add('scrolled');
         window.document.body.style.marginTop = "7rem";
-      } else if (window.scrollY <= 0) {
+      } else if (window.scrollY <= 0 && document.body.clientWidth > 600) {
         document.body.classList.remove('scrolled');
         window.document.body.style.marginTop = "0";
       }
     };
+
+    this.container.querySelector('.nav .current').addEventListener('click', e => {
+      e.target.closest('.nav').classList.add('open');
+    });
+
+    this.container.querySelector('.nav .nav-close').addEventListener('click', e => {
+      e.target.closest('.nav').classList.remove('open');
+    });
   }
 
   set pageQuery(page) {
@@ -73,11 +81,11 @@ export default class BasicPage {
         `)}
       </div>
       <div class="nav">
-        ${pageQuery.get().then(page => html`
-          <div class="current">
+        <div class="current">
+          ${pageQuery.get().then(page => html`
             ${page.data().title}
-          </div>
-        `)}
+          `)}
+        </div>
         <div class="links">
           ${homePageQuery.then(homePageQuery => homePageQuery.get()).then(homePage => html`
             <a href="${homePage.data().path}">${homePage.data().title}</a>
@@ -86,6 +94,7 @@ export default class BasicPage {
             <a href="${navPage.type === 'redirect' ? navPage.redirect : navPage.path}">${navPage.title}</a>
           `))}
         </div>
+        <div class="nav-close">Close</div>
       </div>
     `;
   }
