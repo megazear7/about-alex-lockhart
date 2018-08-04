@@ -55,6 +55,12 @@ export default class BasicPage {
       e.target.closest('.nav').classList.add('open');
     });
 
+
+    this.navPagesQuery.then(() =>
+      [...this.container.querySelectorAll('.nav .links a')].forEach(link =>
+        link.addEventListener('click', e =>
+          e.target.closest('.nav').classList.remove('open'))));
+
     this.container.querySelector('.nav .nav-close').addEventListener('click', e => {
       e.target.closest('.nav').classList.remove('open');
     });
