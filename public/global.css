@@ -26,10 +26,13 @@ img {
   position: fixed;
   text-align: center;
   top: 0;
+  transition: all 0.35s;
+  overflow: hidden;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 .nav a {
-  font-size: 1.25rem;
   color: rgba(255,255,255,0.7);
   box-sizing: border-box;
   padding: 10px;
@@ -39,6 +42,35 @@ img {
 .nav a:hover {
   color: rgba(255,255,255);
   background-color: black;
+}
+
+.nav .links {
+  position: relative;
+  top: 275px;
+}
+
+.nav .current {
+  height: 0;
+  display: none;
+  line-height: 3rem;
+  font-size: 1.5rem;
+}
+
+.scrolled .nav {
+  height: 3rem;
+}
+
+.scrolled .nav .links {
+  height: 100%;
+}
+
+.scrolled .nav .current {
+  height: 100%;
+  display: block;
+}
+
+.scrolled .nav .links {
+  height: 0;
 }
 
 .content {

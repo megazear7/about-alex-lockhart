@@ -69,17 +69,23 @@ export default class BasicPage {
       </div>
       <div class="content">
         ${pageQuery.get().then(page => html`
-          <h1>${page.data().title}</h1>
           <p>${page.data().description}</p>
         `)}
       </div>
       <div class="nav">
-        ${homePageQuery.then(homePageQuery => homePageQuery.get()).then(homePage => html`
-          <a href="${homePage.data().path}">${homePage.data().title}</a>
+        ${pageQuery.get().then(page => html`
+          <div class="current">
+            ${page.data().title}
+          </div>
         `)}
-        ${navPagesQuery.then(navPages => navPages.map(navPage => html`
-          <a href="${navPage.type === 'redirect' ? navPage.redirect : navPage.path}">${navPage.title}</a>
-        `))}
+        <div class="links">
+          ${homePageQuery.then(homePageQuery => homePageQuery.get()).then(homePage => html`
+            <a href="${homePage.data().path}">${homePage.data().title}</a>
+          `)}
+          ${navPagesQuery.then(navPages => navPages.map(navPage => html`
+            <a href="${navPage.type === 'redirect' ? navPage.redirect : navPage.path}">${navPage.title}</a>
+          `))}
+        </div>
       </div>
     `;
   }
