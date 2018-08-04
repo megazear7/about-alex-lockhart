@@ -43,10 +43,10 @@ export default class BasicPage {
   addEventListeners() {
     document.onscroll = (e) => {
       if (window.scrollY > 10) {
-        this.header.classList.add('collapse');
+        document.body.classList.add('scrolled');
         window.document.body.style.marginTop = "7rem";
       } else if (window.scrollY <= 0) {
-        this.header.classList.remove('collapse');
+        document.body.classList.remove('scrolled');
         window.document.body.style.marginTop = "0";
       }
     };

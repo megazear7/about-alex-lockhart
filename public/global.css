@@ -5,7 +5,7 @@ body {
   font-size: 18px;
   margin: 0;
   padding: 0;
-  min-height: 1000px;
+  min-height: 125vh;
 }
 
 a {
@@ -15,6 +15,30 @@ a {
 
 img {
   width: 100%;
+}
+
+.nav {
+  background-color: rgba(0,0,0,0.85);
+  width: 280px;
+  box-sizing: border-box;
+  color: rgba(255,255,255,0.7);
+  height: 100vh;
+  position: fixed;
+  text-align: center;
+  top: 0;
+}
+
+.nav a {
+  font-size: 1.25rem;
+  color: rgba(255,255,255,0.7);
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+}
+
+.nav a:hover {
+  color: rgba(255,255,255);
+  background-color: black;
 }
 
 .content {
@@ -30,7 +54,7 @@ img {
   overflow: hidden;
 }
 
-.header.collapse {
+.scrolled .header {
   position: fixed;
   max-height: 3rem;
 }
@@ -46,7 +70,7 @@ img {
   transition: all 0.35s;
 }
 
-.header.collapse h2 {
+.scrolled .header h2 {
   font-size: 2rem;
   line-height: 3rem;
 }
@@ -56,7 +80,7 @@ img {
   bottom: 0;
 }
 
-.header.collapse img {
+.scrolled .header img {
   position: relative;
   bottom: 200px;
 }
