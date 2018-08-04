@@ -91,7 +91,8 @@ export default class BasicPage {
             <a href="${homePage.data().path}">${homePage.data().title}</a>
           `)}
           ${navPagesQuery.then(navPages => navPages.map(navPage => html`
-            <a href="${navPage.type === 'redirect' ? navPage.redirect : navPage.path}">${navPage.title}</a>
+            <a href="${navPage.type === 'redirect' ? navPage.redirect : navPage.path}"
+               target="${navPage.type === 'redirect' ? '_blank' : ''}">${navPage.title}</a>
           `))}
         </div>
         <div class="nav-close">Close</div>
