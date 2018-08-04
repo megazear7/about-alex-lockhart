@@ -19,28 +19,23 @@ export default class BasicPage {
       }
 
       return pageQuery;
+    })();
+  }
+
+  get navPagesQuery() {
+    return this.homePageQuery
+    .then(homePageQuery => homePageQuery.collection('children').get())
+    .then(children => {
+      let firstLevelPages = [];
+      children.forEach(child => {
+        firstLevelPages.push(child.data());
+      });
+      return firstLevelPages
     });
   }
 
   render() {
     render(BasicPage.markup(this), this.container);
-
-    this.homePageQuery(this.pageQuery)
-    .then(homePageQuery => {
-      homePageQuery.collection('children').get().then(children => {
-        this.children = [];
-        children.forEach(child => {
-          this.children.push(child.data());
-        });
-        render(BasicPage.markup(this), this.container);
-      });
-
-      return homePageQuery.get();
-    })
-    .then(homePage => {
-      this.homePage = homePage.data();
-      render(BasicPage.markup(this), this.container);
-    });
   }
 
   set pageQuery(page) {
@@ -52,16 +47,18 @@ export default class BasicPage {
     return this.pageQueryValue;
   }
 
-  static markup({pageQuery, children}) {
+  static markup({pageQuery, homePageQuery, navPagesQuery}) {
     return html`
-      ${pageQuery.get().then((page) => html`
+      ${pageQuery.get().then(page => html`
         <h1>${page.data().title}</h1>
         <p>${page.data().description}</p>
       `)}
-      <a href='/us/en/home'>Home</a>
-      ${children.map(child => html`
-        <a href='${child.path}'>${child.title}</a>
+      ${homePageQuery.then(homePageQuery => homePageQuery.get()).then(homePage => html`
+        <a href='${homePage.data().path}'>${homePage.data().title}</a>
       `)}
+      ${navPagesQuery.then(navPages => navPages.map(navPage => html`
+        <a href='${navPage.path}'>${navPage.title}</a>
+      `))}
     `;
   }
 
