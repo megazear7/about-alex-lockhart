@@ -54,10 +54,10 @@ export default class BasicPage {
         <p>${page.data().description}</p>
       `)}
       ${homePageQuery.then(homePageQuery => homePageQuery.get()).then(homePage => html`
-        <a href='${homePage.data().path}'>${homePage.data().title}</a>
+        <a href="${homePage.data().path}">${homePage.data().title}</a>
       `)}
       ${navPagesQuery.then(navPages => navPages.map(navPage => html`
-        <a href='${navPage.path}'>${navPage.title}</a>
+        <a href="${navPage.type === 'redirect' ? navPage.redirect : navPage.path}">${navPage.title}</a>
       `))}
     `;
   }
