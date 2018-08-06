@@ -225,17 +225,16 @@ img {
   }
 
   .blog-post .blog-read-more {
-    margin-right: 1rem;
+    margin-right: 0.5rem;
   }
 
   .blog-post h2 {
-    margin: 1rem 0 0 0;
-    text-align: center;
+    margin: 0.5rem 1rem 0 0.5rem;
   }
 
   .blog-post .blog-content {
     margin: 0;
-    padding: 1rem;
+    padding: 0.5rem;
   }
 
   .content h3 {
