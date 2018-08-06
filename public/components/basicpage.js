@@ -1,4 +1,5 @@
 import {html, render} from '/vendor/lit-html.js';
+import Blog from '/components/blog.js';
 
 export default class BasicPage {
   init(container, pageQuery) {
@@ -37,6 +38,15 @@ export default class BasicPage {
   render() {
     render(BasicPage.markup(this), this.container);
     this.header = this.container.querySelector('.header');
+
+    this.pageQuery.get().then(page => {
+      let blogElement = this.container.querySelector('#blog');
+
+      if (blogElement) {
+        new Blog(blogElement);
+      }
+    });
+
     this.addEventListeners();
   }
 
@@ -83,6 +93,10 @@ export default class BasicPage {
       return html`
         <hr>
         <h3>${comp.text}</h3>
+      `;
+    } else if (comp.type === 'blog') {
+      return html`
+        <div id="blog"></div>
       `;
     }
   }
