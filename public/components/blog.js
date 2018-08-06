@@ -18,12 +18,17 @@ export default class Blog {
 
       var postMarkup = html`
         <h2>${post.title}</h3>
-        <a href="${post.url}" target="_blank">Read More</a>
-        <div class="content"></div>
+        <img class="primary-image" src="">
+        <div class="blog-content"></div>
+        <div class="blog-read-more">
+          <a href="${post.url}" target="_blank">Read More</a>
+        </div>
       `;
 
       render(postMarkup, postContainer);
-      postContainer.querySelector('.content').innerHTML = post.content;
+      postContainer.querySelector('.blog-content').innerHTML = post.content;
+      postContainer.querySelector('.primary-image').src =
+        postContainer.querySelector('.blog-content').querySelector('img').src;
 
       this.container.append(postContainer);
     }));
