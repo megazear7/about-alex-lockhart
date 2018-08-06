@@ -9,7 +9,6 @@ body {
 }
 
 a {
-  display: block;
   text-decoration: none;
 }
 
@@ -41,6 +40,8 @@ img {
   box-sizing: border-box;
   padding: 10px;
   width: 100%;
+  display: block;
+  text-decoration: none;
 }
 
 .nav a:hover {

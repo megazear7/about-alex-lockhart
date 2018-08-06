@@ -13,15 +13,19 @@ export default class Blog {
 
   render() {
     this.postsQuery.then(posts => posts.forEach(post => {
-      var innerDiv = document.createElement('div');
-      innerDiv.classList.add('blog-post');
+      var postContainer = document.createElement('div');
+      postContainer.classList.add('blog-post');
 
-      this.container.append(innerDiv);
-      innerDiv.innerHTML = post.content;
+      var postMarkup = html`
+        <h2>${post.title}</h3>
+        <a href="${post.url}" target="_blank">Read More</a>
+        <div class="content"></div>
+      `;
 
-      var readMore = document.createElement('a');
-      readMore.href = post.url;
-      innerDiv.prepend(readMore);
+      render(postMarkup, postContainer);
+      postContainer.querySelector('.content').innerHTML = post.content;
+
+      this.container.append(postContainer);
     }));
 
     this.addEventListeners();
