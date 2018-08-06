@@ -224,9 +224,18 @@ img {
     padding: 0rem;
   }
 
+  .blog-post .blog-read-more {
+    margin-right: 1rem;
+  }
+
+  .blog-post h2 {
+    margin: 1rem 0 0 0;
+    text-align: center;
+  }
+
   .blog-post .blog-content {
     margin: 0;
-    padding: 0.5rem;
+    padding: 1rem;
   }
 
   .content h3 {
