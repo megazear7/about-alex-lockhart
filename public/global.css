@@ -123,7 +123,7 @@ img {
 }
 
 .blog-post img.primary-image {
-  margin-bottom: 1rem;
+  margin: 1rem 0 0 0;
 }
 
 .blog-post .blog-content img {
@@ -220,6 +220,11 @@ img {
   }
 
   .blog-post {
+    margin: 0;
+    padding: 0rem;
+  }
+
+  .blog-post .blog-content {
     margin: 0;
     padding: 0.5rem;
   }
