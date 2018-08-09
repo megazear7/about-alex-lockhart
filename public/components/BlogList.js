@@ -27,8 +27,13 @@ export default class BlogList {
 
       render(postMarkup, postContainer);
       postContainer.querySelector('.blog-content').innerHTML = post.content;
-      postContainer.querySelector('.primary-image').src =
-        postContainer.querySelector('.blog-content').querySelector('img').src;
+
+      // This will grab the larger image.
+      var imageUrl = postContainer
+                     .querySelector('.blog-content')
+                     .querySelector('img').
+                     src.replace(/s\d\d\d\d?/, 's1000');
+      postContainer.querySelector('.primary-image').src = imageUrl;
 
       this.container.append(postContainer);
     }));
