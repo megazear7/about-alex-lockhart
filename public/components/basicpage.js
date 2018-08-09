@@ -96,7 +96,7 @@ export default class BasicPage {
     } else if (comp.type === 'header') {
       return html`
         <hr>
-        <h3>${comp.text}</h3>
+        <h3 class="section">${comp.text}</h3>
       `;
     } else if (comp.type === 'BlogList') {
       return html`

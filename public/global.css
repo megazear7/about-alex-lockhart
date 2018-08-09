@@ -108,7 +108,7 @@ img {
   max-width: 800px;
 }
 
-.content h3 {
+h3.section {
   font-size: 2rem;
   margin: 2rem 300px 0.5rem 300px;
   max-width: 800px;
