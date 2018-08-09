@@ -1,6 +1,6 @@
 import {html, render} from '/vendor/lit-html.js';
 
-export default class Blog {
+export default class BlogList {
   init(container) {
     this.container = container;
 
@@ -43,14 +43,14 @@ export default class Blog {
     // The constructor should only contain the boiler plate code for finding or creating the reference.
     if (typeof container.dataset.ref === 'undefined') {
       this.ref = Math.random();
-      Blog.refs[this.ref] = this;
+      BlogList.refs[this.ref] = this;
       container.dataset.ref = this.ref;
       this.init(container);
     } else {
       // If this element has already been instantiated, use the existing reference.
-      return Blog.refs[container.dataset.ref];
+      return BlogList.refs[container.dataset.ref];
     }
   }
 }
 
-Blog.refs = {};
+BlogList.refs = {};

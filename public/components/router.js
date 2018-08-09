@@ -1,5 +1,5 @@
 import {html, render} from '/vendor/lit-html.js';
-import BasicPage from '/components/basicpage.js';
+import BasicPage from '/components/BasicPage.js';
 
 export default class Router {
   init(container) {
