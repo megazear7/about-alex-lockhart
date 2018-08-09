@@ -6,6 +6,7 @@ body {
   margin: 0;
   padding: 0 0 5rem 0;
   min-height: 78vh; /* This number needs adjusted as the header image height changes */
+  overflow-y: scroll; /* This will prevent the header from jumping as page content is replaced during navigation. */
 }
 
 a {
