@@ -93,6 +93,11 @@ img {
   border-width: 1px;
 }
 
+.content .blogger-content-component {
+  margin: 1rem 300px 0.5rem 300px;
+  max-width: 800px;
+}
+
 .content p {
   margin: 1rem 300px 0.5rem 300px;
   max-width: 800px;
@@ -218,6 +223,11 @@ img {
   }
 
   .content p {
+    margin: 0;
+    padding: 0.5rem;
+  }
+
+  .content .blogger-content-component {
     margin: 0;
     padding: 0.5rem;
   }

@@ -1,5 +1,6 @@
 import {html, render} from '/vendor/lit-html.js';
 import Blog from '/components/blog.js';
+import BloggerContent from '/components/BloggerContent.js';
 
 export default class BasicPage {
   init(container, pageQuery) {
@@ -40,11 +41,14 @@ export default class BasicPage {
     this.header = this.container.querySelector('.header');
 
     this.pageQuery.get().then(page => {
-      let blogElement = this.container.querySelector('#blog');
+      let blogElement = this.container.querySelector('.blog-component');
 
       if (blogElement) {
         new Blog(blogElement);
       }
+
+      [...this.container.querySelectorAll('.blogger-content-component')]
+      .forEach(bloggerContentComponent => new BloggerContent(bloggerContentComponent));
     });
 
     this.addEventListeners();
@@ -96,7 +100,12 @@ export default class BasicPage {
       `;
     } else if (comp.type === 'blog') {
       return html`
-        <div id="blog"></div>
+        <div class="blog-component"></div>
+      `;
+    } else if (comp.type === 'BloggerContent') {
+      return html`
+        <div class="blogger-content-component"
+             data-blogger-page-id="${comp.bloggerPageId}"></div>
       `;
     }
   }
