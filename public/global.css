@@ -9,7 +9,12 @@ body {
 }
 
 a {
+  color: rgba(0,0,150,0.87);
   text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 img {
@@ -123,6 +128,14 @@ img {
   margin-bottom: 3rem;
   padding-bottom: 2px;
   border-color: rgba(0,0,0,0.2);
+}
+
+.blog-post * {
+  color: rgba(0,0,0,0.87) !important;
+}
+
+.blog-post a {
+  color: rgba(0,0,150,0.87) !important;
 }
 
 .blog-post .blog-read-more {
