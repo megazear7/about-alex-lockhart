@@ -1,13 +1,13 @@
 {
   "name": "Alex Lockhart",
-  "short_name": "AlexLockhart",
+  "short_name": "Lockhart",
   "lang": "en-US",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#039be5",
   "theme_color": "#ffa100",
-  "description": "A site about Alex Lockhart.",
-  "gcm_sender_id": "103953800507",
+  "description": "About Alex Lockhart.",
+  "gcm_sender_id": "934890453503",
   "icons": [{
     "src": "/images/icon-48.png",
     "sizes": "48x48",
