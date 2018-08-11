@@ -31,6 +31,10 @@
         window.db = db;
         window.app = app;
       });
+      
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js');
+      }
     </script>
 
     <link rel="stylesheet" type="text/css" href="/global.css">
