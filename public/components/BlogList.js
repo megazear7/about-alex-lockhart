@@ -19,18 +19,18 @@ export default class BlogList {
       var postMarkup = html`
         <h2>${post.title}</h3>
         <img class="primary-image" src="">
-        <div class="blog-content"></div>
+        <div class="blog-preview"></div>
         <div class="blog-read-more">
           <a href="${post.url}" target="_blank">Read More</a>
         </div>
       `;
 
       render(postMarkup, postContainer);
-      postContainer.querySelector('.blog-content').innerHTML = post.content;
+      postContainer.querySelector('.blog-preview').innerHTML = post.content;
 
       // This will grab the larger image.
       var imageUrl = postContainer
-                     .querySelector('.blog-content')
+                     .querySelector('.blog-preview')
                      .querySelector('img').
                      src.replace(/s\d\d\d\d?/, 's1000');
       postContainer.querySelector('.primary-image').src = imageUrl;
