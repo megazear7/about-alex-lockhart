@@ -6,7 +6,6 @@ export default class BasicPage {
   init(container, pageQuery) {
     this.container = container;
     this.pageQueryValue = pageQuery;
-    this.children = [];
     this.render();
   }
 
@@ -100,7 +99,8 @@ export default class BasicPage {
       `;
     } else if (comp.type === 'BlogList') {
       return html`
-        <div class="blog-list-component"></div>
+        <div class="blog-list-component"
+             data-blog-viewer="${comp.blogViewer}"></div>
       `;
     } else if (comp.type === 'BloggerContent') {
       return html`
@@ -120,6 +120,7 @@ export default class BasicPage {
         ${pageQuery.get().then(page => html`
           <p class="description">${page.data().description}</p>
           <hr>
+          <div class="extended-content"></div>
           ${page.data().content ? page.data().content.map(comp => renderComponent(comp)) : ''}
         `)}
       </div>
@@ -137,7 +138,7 @@ export default class BasicPage {
           ${navPagesQuery.then(navPages => navPages.map(navPage => html`
             <a href="${navPage.type === 'redirect' ? navPage.redirect : navPage.path}"
                target="${navPage.type === 'redirect' ? '_blank' : ''}"
-               class="${navPage.path === window.location.pathname ? 'active' : ''}">${navPage.title}</a>
+               class="${window.location.pathname.indexOf(navPage.path) === 0 ? 'active' : ''}">${navPage.title}</a>
           `))}
         </div>
         <div class="nav-close">Close</div>
@@ -154,6 +155,7 @@ export default class BasicPage {
       this.init(container, doc);
     } else {
       // If this element has already been instantiated, use the existing reference.
+      this.init(container, doc);
       return BasicPage.refs[container.dataset.ref];
     }
   }

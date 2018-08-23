@@ -3,6 +3,7 @@ import {html, render} from '/vendor/lit-html.js';
 export default class BlogList {
   init(container) {
     this.container = container;
+    this.blogViewer = this.container.dataset.blogViewer;
 
     this.postsQuery = fetch('https://www.googleapis.com/blogger/v3/blogs/4624119844445838894/posts?key=AIzaSyCmMb9-ysFUJ0c-Ew71Hz3UgvVTeo_MbEk')
     .then(result => result.json())
@@ -21,7 +22,7 @@ export default class BlogList {
         <img class="primary-image" src="">
         <div class="blog-preview"></div>
         <div class="blog-read-more">
-          <a href="${post.url}" target="_blank">Read More</a>
+          <a href="${this.blogViewer}?${post.id}" target="_blank">Read More</a>
         </div>
       `;
 

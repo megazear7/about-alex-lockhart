@@ -1,5 +1,6 @@
 import {html, render} from '/vendor/lit-html.js';
 import BasicPage from '/components/BasicPage.js';
+import BlogPage from '/components/BlogPage.js';
 
 export default class Router {
   init(container) {
@@ -11,7 +12,8 @@ export default class Router {
 
       if (element.tagName == 'A' && element.getAttribute('href').startsWith('/')) {
         window.history.pushState({}, null, element.getAttribute('href'));
-        this.pageComponent.pageQuery = Router.getPath(window.location.pathname);
+        //this.pageComponent.pageQuery = Router.getPath(window.location.pathname);
+        this.render();
         return false; // prevent default action and stop event propagation
       }
     };
@@ -21,7 +23,15 @@ export default class Router {
 
   render() {
     render(Router.markup(this), this.container);
-    this.pageComponent = new BasicPage(this.container.querySelector('.page'), Router.getPath(window.location.pathname));
+
+    Router.getPath(window.location.pathname).get()
+    .then(page => {
+      if (page.data().type === "BlogPage") {
+        this.pageComponent = new BlogPage(this.container.querySelector('.page'), Router.getPath(window.location.pathname));
+      } else {
+        this.pageComponent = new BasicPage(this.container.querySelector('.page'), Router.getPath(window.location.pathname));
+      }
+    });
   }
 
   static markup({}) {
