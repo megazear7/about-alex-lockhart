@@ -256,7 +256,7 @@ h3.section {
   }
 
   .blog-post h2 {
-    margin: 0.5rem 1rem 0 0.5rem;
+    margin: 0.5rem 1rem 0.5rem 0.5rem;
   }
 
   .blog-post .blog-content {
@@ -266,7 +266,7 @@ h3.section {
 
   .content h3 {
     margin: 0;
-    padding: 0.5rem;
+    padding: 0.5rem 0;
   }
 
   .content hr {
