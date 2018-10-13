@@ -1,5 +1,6 @@
 import {html, render} from '/vendor/lit-html.js';
 import BlogList from '/components/BlogList.js';
+import BlogConcat from '/components/BlogConcat.js';
 import BloggerContent from '/components/BloggerContent.js';
 
 export default class BasicPage {
@@ -48,6 +49,9 @@ export default class BasicPage {
 
       [...this.container.querySelectorAll('.blogger-content-component')]
       .forEach(bloggerContentElement => new BloggerContent(bloggerContentElement));
+
+      [...this.container.querySelectorAll('.blogger-concat-component')]
+      .forEach(bloggerConcatElement => new BlogConcat(bloggerConcatElement));
     });
 
     this.addEventListeners();
@@ -106,6 +110,11 @@ export default class BasicPage {
       return html`
         <div class="blogger-content-component"
              data-blogger-page-id="${comp.bloggerPageId}"></div>
+      `;
+    } else if (comp.type === 'BlogConcat') {
+      return html`
+        <div class="blogger-concat-component"
+             data-label="${comp.label}"></div>
       `;
     }
   }

@@ -123,11 +123,13 @@ h3.section {
 .blog-post {
   margin: 1rem 300px 0.5rem 300px;
   max-width: 800px;
-
-  border-width: 0 0 2px 0;
-  border-style: solid;
   margin-bottom: 3rem;
   padding-bottom: 2px;
+}
+
+.blog-preview .blog-post {
+  border-width: 0 0 2px 0;
+  border-style: solid;
   border-color: rgba(0,0,0,0.2);
 }
 
