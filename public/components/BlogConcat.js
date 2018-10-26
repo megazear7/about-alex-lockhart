@@ -5,7 +5,7 @@ export default class BlogConcat {
     this.container = container;
     this.label = this.container.dataset.label;
 
-    this.postsQuery = fetch('https://www.googleapis.com/blogger/v3/blogs/4624119844445838894/posts?key=AIzaSyCmMb9-ysFUJ0c-Ew71Hz3UgvVTeo_MbEk&labels='+this.label)
+    this.postsQuery = fetch('https://www.googleapis.com/blogger/v3/blogs/4624119844445838894/posts?key=AIzaSyCmMb9-ysFUJ0c-Ew71Hz3UgvVTeo_MbEk&maxResults=20&labels='+this.label)
     .then(result => result.json())
     .then(({items}) => items);
 
