@@ -41,8 +41,12 @@
     <link rel="stylesheet" type="text/css" href="/global.css">
   </head>
   <body>
-    <div id="router">
-      <h2>Loading...</h2>
-    </div>
+    <script type="module">
+        import CpgCrackOpening from 'https://unpkg.com/canvas-play@2.3.1/js/elements/cpg-crack-opening.js';
+    </script>
+    <cpg-crack-opening
+      data-acceleration="0.2"
+      data-gap-acceleration="0.8"></cpg-crack-opening>
+    <div id="router"></div>
   </body>
 </html>
