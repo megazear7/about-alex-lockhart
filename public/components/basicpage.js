@@ -59,10 +59,10 @@ export default class BasicPage {
 
   addEventListeners() {
     document.onscroll = (e) => {
-      if (window.scrollY > 10 && document.body.clientWidth > 600) {
+      if (window.scrollY > 10 && document.body.clientWidth > 900) {
         document.body.classList.add('scrolled');
         window.document.body.style.marginTop = "7rem";
-      } else if (window.scrollY <= 0 && document.body.clientWidth > 600) {
+      } else if (window.scrollY <= 0 && document.body.clientWidth > 900) {
         document.body.classList.remove('scrolled');
         window.document.body.style.marginTop = "0";
       }
@@ -95,7 +95,7 @@ export default class BasicPage {
     if (typeof comp === 'string') {
       return html`<p>${comp}</p>`;
     } else if (comp.type === 'image') {
-      return html`<img src="${comp.src}"></a>`;
+      return html`<img src="${comp.src}"></img>`;
     } else if (comp.type === 'header') {
       return html`
         <hr>
@@ -150,8 +150,11 @@ export default class BasicPage {
                class="${window.location.pathname.indexOf(navPage.path) === 0 ? 'active' : ''}">${navPage.title}</a>
           `))}
         </div>
-        <div class="nav-close">Close</div>
+        <div class="nav-close"><span>Close</span></div>
       </div>
+      <footer>
+        <img src="/images/mountains-wide.png">
+      </footer>
     `;
   }
 

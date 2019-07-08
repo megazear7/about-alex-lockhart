@@ -4,7 +4,6 @@ body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 18px;
   margin: 0;
-  padding: 0 0 5rem 0;
   min-height: 78vh; /* This number needs adjusted as the header image height changes */
   overflow-y: scroll; /* This will prevent the header from jumping as page content is replaced during navigation. */
 }
@@ -70,25 +69,42 @@ img {
   font-size: 1.5rem;
 }
 
-.scrolled .nav {
+.scrolled .nav:not(.open) {
   height: 3rem;
 }
 
-.scrolled .nav .current {
+.scrolled .nav:not(.open) .current {
   height: 100%;
   display: block;
+  cursor: pointer;
 }
 
-.scrolled .nav .links {
+.scrolled .nav:not(.open) .current:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.scrolled .nav:not(.open) .links {
   height: 0;
 }
 
+.scrolled .nav.open .nav-close {
+  display: block;
+}
+
+.nav.open .nav-close:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
 .nav .nav-close {
-  position: fixed;
   width: 100%;
-  bottom: 1rem;
   color: rgba(255,255,255,0.4);
   display: none;
+  grid-area: bottom;
+  cursor: pointer;
+}
+
+.content {
+  margin-bottom: 2rem;
 }
 
 .content hr {
@@ -204,7 +220,14 @@ h3.section {
   bottom: 200px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1200px) {
+  .content p, .content .blogger-content-component, .content h3 {
+    margin: 1rem 1rem 0.5rem 300px;
+    max-width: none;
+  }
+}
+
+@media only screen and (max-width: 900px) {
   .nav {
     width: 100vw;
     height: 3rem;
@@ -223,10 +246,6 @@ h3.section {
 
   .nav.open .nav-close {
     display: block;
-  }
-
-  .nav.open {
-    height: 100vh;
   }
 
   .header h2 {

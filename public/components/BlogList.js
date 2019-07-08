@@ -18,7 +18,7 @@ export default class BlogList {
       postContainer.classList.add('blog-post');
 
       var postMarkup = html`
-        <h2>${post.title}</h3>
+        <h2>${post.title}</h2>
         <img class="primary-image" src="">
         <div class="blog-preview"></div>
         <div class="blog-read-more">
