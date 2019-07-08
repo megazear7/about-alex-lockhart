@@ -1,5 +1,5 @@
-const PRECACHE = 'precache-v6';
-const RUNTIME = 'runtime-v6';
+const PRECACHE = 'precache-v7';
+const RUNTIME = 'runtime-v7';
 
 const PRECACHE_URLS = [
   "/",
