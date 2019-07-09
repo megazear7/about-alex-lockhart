@@ -27,6 +27,7 @@ img {
   box-sizing: border-box;
   color: rgba(255,255,255,0.7);
   height: 100vh;
+  z-index: 100;
   position: fixed;
   text-align: center;
   top: 0;
@@ -196,8 +197,8 @@ h3.section {
 
 .header h2 {
   position: absolute;
-  bottom: 0;
-  font-size: 4rem;
+  bottom: 1rem;
+  font-size: 5rem;
   color: rgba(255,255,255,0.85);
   margin: 0 300px;
   max-width: 800px;
@@ -218,6 +219,26 @@ h3.section {
 .scrolled .header img {
   position: relative;
   bottom: 200px;
+}
+
+.pencil-effect {
+  width: 100%;
+  height: 33.4vw;
+  z-index: 1;
+  background-image: url(/images/mountains-wide.png);
+  background-size: cover;
+  background-position: center;
+}
+
+@supports (filter: invert(1)) and (background-blend-mode: difference) {
+  .pencil-effect {
+    background-color: #13100E;
+    background-image: url(/images/mountains-wide.png), url(/images/mountains-wide.png);
+    background-blend-mode: difference;
+    background-position: calc(50% - 1px) calc(50% - 1px), calc(50% + 1px) calc(50% + 1px);
+    filter: brightness(1) invert(1) grayscale(1);
+    box-shadow: inset 0 0 0 1px #13100E;
+  }
 }
 
 @media only screen and (max-width: 1200px) {
